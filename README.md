@@ -26,7 +26,7 @@ how simple it is today to fix gibberish with one click !
 
 ### The button
 
-![Alt text](images/Buttun.png)
+![Alt text](images/Button.png)
 
 
 
