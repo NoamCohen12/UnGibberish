@@ -8,6 +8,33 @@ Fix Hebrew↔English keyboard layout mistakes in ChatGPT’s textarea.
 - Popup button to trigger the fix in the active tab
 - Overlay button inside the page (bottom-right) when an editable is detected
 
+## Demo
+Before:
+
+ים' דןצפךק ןא ןד אםגשט אם כןס עןננקרןדי 'ןאי םמק בךןבל !
+
+![Alt text](images/Before.png)
+
+
+After pressing **UnGibberish**:
+
+how simple it is today to fix gibberish with one click !
+
+![Alt text](images/After.png)
+
+
+
+### The button
+
+![Alt text](images/Buttun.png)
+
+
+
+
+
+
+
+
 ## Install (Developer Mode)
 1. Icons are included in `assets/`.
 2. Open Chrome → Extensions → Enable Developer mode.
@@ -43,6 +70,12 @@ UnGibberish/
 ├─ ui/
 │   ├─ popup.html
 │   └─ popup.js
-└─ tests/
-    └─ mapping.test.js
+├─ tests/
+│    └─ mapping.test.js
+│
+└─images/
+    ├─ Before.png
+    ├─ After.png
+    └─ Button.png
 ```
+
