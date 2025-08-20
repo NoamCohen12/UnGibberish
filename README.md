@@ -26,6 +26,7 @@ Fix Hebrew↔English keyboard layout mistakes in ChatGPT’s textarea.
 ```
 UnGibberish/
 ├─ manifest.json
+├─ pacage.json
 ├─ README.md
 ├─ assets/
 │  ├─ icon16.png
@@ -37,8 +38,11 @@ UnGibberish/
 ├─ src/
 │  ├─ content.js
 │  ├─ mapping.js
+│  ├─ mapping.browser.js
 │  └─ overlay.css
-└─ ui/
-   ├─ popup.html
-   └─ popup.js
+├─ ui/
+│   ├─ popup.html
+│   └─ popup.js
+└─ tests/
+    └─ mapping.test.js
 ```
