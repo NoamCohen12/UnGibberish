@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "UnGibberish",
+  "description": "Fix Hebrew↔English keyboard layout mistakes in ChatGPT’s textarea.",
+  "version": "1.0.0",
+  "icons": {
+    "16": "assets/icon16.png",
+    "32": "assets/icon32.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "action": {
+    "default_title": "UnGibberish",
+    "default_popup": "ui/popup.html",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "32": "assets/icon32.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/service_worker.js"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "contextMenus",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ],
+      "js": ["src/mapping.browser.js", "src/content.js"],
+      "css": ["src/overlay.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "fix-layout": {
+      "suggested_key": {
+        "default": "Alt+Shift+F"
+      },
+      "description": "Fix keyboard layout in ChatGPT textarea"
+    }
+  }
+}
+
+

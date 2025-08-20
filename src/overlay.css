@@ -1,0 +1,31 @@
+#ug-overlay{
+  position: fixed !important;
+  right: 12px !important;
+  bottom: 12px !important;
+  z-index: 2147483647 !important;
+
+  /* גודל קבוע שלא תלוי בחלון */
+  width: 60px;
+  height: 30px;
+  font-size: 11px;
+
+  background: #007acc;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+#ug-overlay:hover{ background:#0a84ff; }
+
+/* אופציונלי: כבוד ל-safe area באייפון וכו' */
+@supports (bottom: env(safe-area-inset-bottom)){
+  #ug-overlay{
+    bottom: calc(env(safe-area-inset-bottom) + 88px);
+    right:  calc(env(safe-area-inset-right)  + 24px);
+  }
+}
