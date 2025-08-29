@@ -120,7 +120,7 @@
     if (msg?.type === 'UG_FIX_LAYOUT') applyFixToActiveInput();
   });
 
-  // משאירים observer רק כדי לוודא שהכפתור קיים (לא למקם אותו)
+  // Leave an observer only to verify that the button exists (not to place it)
   const observer = new MutationObserver(() => ensureOverlayButton());
   observer.observe(document.documentElement, { childList: true, subtree: true });
 
