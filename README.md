@@ -1,4 +1,7 @@
 # UnGibberish (Chrome Extension, MV3)
+![Chrome](https://img.shields.io/badge/Chrome%20Extension-MV3-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
 Fix Hebrew↔English keyboard layout mistakes in ChatGPT’s textarea.
 
@@ -26,7 +29,7 @@ how simple it is today to fix gibberish with one click !
 
 ### The button
 
-![Alt text](images/Button.png)
+![Alt text](images/Buttun.png)
 
 
 
