@@ -28,28 +28,24 @@
       btn = document.createElement('button');
       btn.type = 'button';
       btn.title = 'Fix keyboard layout (Ctrl/Cmd+Alt+L)';
-      btn.textContent = 'אבג→ABC';
+      btn.textContent = 'אבג⟷ABC';
       btn.id = OVERLAY_ID;
 
-      // לא מגדירים שום inline styles של מיקום!
+     
       btn.addEventListener('mousedown', (e) => e.preventDefault());
       btn.addEventListener('click', applyFixToActiveInput);
 
-      // חשוב: להצמיד ל-body כדי ש-position: fixed יעבוד יציב
       (document.body || document.documentElement).appendChild(btn);
     }
-    // ⚠️ לא לקרוא ל-positionOverlayButton כאן
   }
 
-  // ⚠️ מוחקים/מנטרלים את הפונקציה שממקמת עם top/left
-  // function positionOverlayButton(btn) { ... }  // לא בשימוש
+ 
 
   function replaceInContentEditable(target, fixedText) {
     const sel = window.getSelection();
     if (!sel) return;
-  
+    //There is a selection - we replace the selected text
     if (sel.rangeCount > 0 && !sel.isCollapsed) {
-      // יש בחירה – מחליפים את הטקסט הנבחר
       const range = sel.getRangeAt(0);
       range.deleteContents();
       range.insertNode(document.createTextNode(fixedText));
@@ -61,7 +57,7 @@
       caret.collapse(false);
       sel.addRange(caret);
     } else {
-      // אין בחירה – מחליפים את כל התוכן
+      // There is no selection - we replace the entire text
       target.textContent = fixedText;
   
       const caret = document.createRange();
@@ -71,11 +67,11 @@
       sel.addRange(caret);
     }
   
-    // ליידע פריימוורקים (React/SPA) שמשהו השתנה
+    // Notify that the input has changed
     target.dispatchEvent(new Event('input', { bubbles: true }));
   }
   
-
+// Apply the fix to the active input
   function applyFixToActiveInput() {
     const target = lastEditable || findChatEditable();
     if (!target) return;
@@ -102,19 +98,12 @@
     } else {
       target.value = fixed;
     }
+    // Notify that the input has changed
     target.dispatchEvent(new Event('input', { bubbles: true }));
     target.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
-  // קיצור מקלדת: Ctrl/Cmd + Alt + L
-  function handleKeydown(e) {
-    const isMac = navigator.platform.toUpperCase().includes("MAC");
-    const ctrlOrCmd = isMac ? e.metaKey : e.ctrlKey;
-    if (ctrlOrCmd && e.altKey && (e.key === 'l' || e.key === 'L')) {
-      e.preventDefault();
-      applyFixToActiveInput();
-    }
-  }
+
 
   chrome.runtime?.onMessage?.addListener((msg) => {
     if (msg?.type === 'UG_FIX_LAYOUT') applyFixToActiveInput();
@@ -123,10 +112,8 @@
   // Leave an observer only to verify that the button exists (not to place it)
   const observer = new MutationObserver(() => ensureOverlayButton());
   observer.observe(document.documentElement, { childList: true, subtree: true });
-
-  // לא צריך למקם ב-resize; אם בכל זאת תרצה לוודא קיום:
+  // Leave an observer only to verify that the button exists (not to place it)
   window.addEventListener('resize', () => ensureOverlayButton(), true);
-  window.addEventListener('keydown', handleKeydown, true);
 
   window.addEventListener('focusin', (e) => {
     const t = e.target;

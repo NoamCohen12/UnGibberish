@@ -31,16 +31,23 @@
   ],
   "host_permissions": [
     "https://chat.openai.com/*",
-    "https://chatgpt.com/*"
+    "https://chatgpt.com/*",
+     "https://www.google.com/*"
   ],
   "content_scripts": [
     {
       "matches": [
         "https://chat.openai.com/*",
-        "https://chatgpt.com/*"
+        "https://chatgpt.com/*",
+        "https://www.google.com/*"
       ],
-      "js": ["src/mapping.browser.js", "src/content.js"],
-      "css": ["src/overlay.css"],
+      "js": [
+        "src/mapping.browser.js",
+        "src/content.js"
+      ],
+      "css": [
+        "src/overlay.css"
+      ],
       "run_at": "document_idle"
     }
   ],
@@ -53,5 +60,3 @@
     }
   }
 }
-
-

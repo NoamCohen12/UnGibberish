@@ -6,10 +6,10 @@
 Fix Hebrew↔English keyboard layout mistakes in ChatGPT’s textarea.
 
 ## Features
-- Shortcut: Alt+Shift+F to fix the current input
-- Context menu on editable fields: "UnGibberish: Fix layout"
-- Popup button to trigger the fix in the active tab
+- Shortcut: **Alt+Shift+F** to fix the current input
 - Overlay button inside the page (bottom-right) when an editable is detected
+- You can also **select text with the mouse** and only the selected part will be fixed (instead of the whole input)
+
 
 ## Demo
 Before:
@@ -29,7 +29,7 @@ how simple it is today to fix gibberish with one click !
 
 ### The button
 
-![Alt text](images/Buttun.png)
+![Alt text](images/Button.png)
 
 
 
