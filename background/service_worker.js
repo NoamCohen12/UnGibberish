@@ -29,7 +29,7 @@ async function triggerFixInActiveTab(tabId) {
     try {
       await chrome.scripting.executeScript({
         target: { tabId },
-        files: ["src/mapping.js", "src/content.js"]
+        files: ["src/mapping.browser.js", "src/content.js"]
       });
       await chrome.tabs.sendMessage(tabId, { type: "UG_FIX_LAYOUT" });
     } catch (e) {

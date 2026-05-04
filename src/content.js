@@ -21,6 +21,7 @@
 
   let lastEditable = null;
   let lastSelection = null;
+  let lastRange = null; // saved Range for contenteditable
 
   function ensureOverlayButton() {
     let btn = document.getElementById(OVERLAY_ID);
@@ -79,7 +80,12 @@
     if (typeof target.focus === 'function') target.focus();
 
     if (target.isContentEditable) {
+      // Restore saved range (focus may have been lost when shortcut was pressed)
       const sel = window.getSelection();
+      if (lastRange && sel) {
+        sel.removeAllRanges();
+        sel.addRange(lastRange);
+      }
       const hasSelection = sel && !sel.isCollapsed;
       const original = hasSelection ? sel.toString() : (target.textContent || '');
       const fixed = fix(original);
@@ -134,6 +140,11 @@
     if (lastEditable.tagName === 'TEXTAREA' || lastEditable.tagName === 'INPUT') {
       try { lastSelection = { start: lastEditable.selectionStart ?? 0, end: lastEditable.selectionEnd ?? 0 }; }
       catch (_) { /* noop */ }
+    } else if (lastEditable.isContentEditable) {
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0) {
+        lastRange = sel.getRangeAt(0).cloneRange();
+      }
     }
   }, true);
 

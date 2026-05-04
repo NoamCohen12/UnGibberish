@@ -8,13 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {
       try {
         await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: [
-          'src/mapping.js', 'src/content.js'
+          'src/mapping.browser.js', 'src/content.js'
         ]});
         await chrome.tabs.sendMessage(tab.id, { type: 'UG_FIX_LAYOUT' });
       } catch (err) {
         console.warn('UnGibberish: could not trigger fix', err);
       }
     }
+    window.close();
+  });
+
+  document.getElementById('shortcutLink')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
     window.close();
   });
 });
